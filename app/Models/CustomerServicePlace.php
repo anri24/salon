@@ -9,7 +9,7 @@ use App\Models\CustomerService;
 class CustomerServicePlace extends Model{
     use HasFactory;
 
-    protected $table = 'tb_customer_service_place';
+    protected $table = 'customer_service_places';
     protected $fillable = [
         'id',
         'name',

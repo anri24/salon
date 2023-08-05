@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-    protected $table = 'tb_comment';
+    protected $table = 'comments';
     protected $fillable = [
         'id',
         'fullname',

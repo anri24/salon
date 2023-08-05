@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_comment',function (Blueprint $table){
+        Schema::create('comments',function (Blueprint $table){
             $table->id();
             $table->string('fullname');
             $table->longText('comment');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_comment');
+        Schema::dropIfExists('comments');
     }
 };

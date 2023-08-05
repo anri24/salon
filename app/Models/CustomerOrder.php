@@ -10,8 +10,8 @@ use App\Models\CustomerService;
 class CustomerOrder extends Model{
 
     use HasFactory;
-    
-    protected $table = 'tb_customer_order';
+
+    protected $table = 'customer_orders';
     protected $fillable = [
         'id',
         'services',
@@ -25,5 +25,5 @@ class CustomerOrder extends Model{
     public function custmoerServiceForOrder(){
         return $this->belongsTo(CustomerService::class,'services');
     }
-    
+
 }

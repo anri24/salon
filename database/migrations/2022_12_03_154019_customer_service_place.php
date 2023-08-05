@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_customer_service_place',function (Blueprint $table){
+        Schema::create('customer_service_places',function (Blueprint $table){
             $table->id();
             $table->string('name');
             $table->timestamps();

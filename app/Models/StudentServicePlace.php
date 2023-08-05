@@ -11,14 +11,13 @@ class StudentServicePlace extends Model{
 
     use HasFactory;
 
-    protected $table = 'tb_student_service_place';
+    protected $table = 'student_service_places';
     protected $fillable = [
-        'id',
         'name',
         'price',
     ];
 
-    
+
     public function studentOrder(){
         return $this->hasMany(StudentOrder::class, 'student_service_place', 'id');
     }

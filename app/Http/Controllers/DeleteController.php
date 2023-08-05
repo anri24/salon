@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\StudentServicePlace;
 use App\Models\StudentService;
 use App\Models\StudentOrder;
-use App\Models\Photo;
+use App\Models\Gallery;
 
 class DeleteController extends Controller
 {
@@ -35,9 +35,9 @@ class DeleteController extends Controller
         return redirect('students_orders');
     }
     public function removePhoto($id){
-        $photo = Photo::find($id);
+        $photo = Gallery::find($id);
         $photo->delete();
         return redirect('photo');
     }
-    
+
 }

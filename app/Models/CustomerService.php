@@ -14,9 +14,8 @@ class  CustomerService extends Model{
 
     use HasFactory;
 
-    protected $table = 'tb_customer_sercive';
+    protected $table = 'customer_services';
     protected $fillable = [
-        'id',
         'customer_service_place',
         'service',
         'price',
@@ -29,8 +28,8 @@ class  CustomerService extends Model{
     public function customerServicePlace(){
         return $this->belongsTo(CustomerServicePlace::class);
     }
-    
-   
-    
+
+
+
 
 }

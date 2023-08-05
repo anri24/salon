@@ -12,9 +12,8 @@ class StudentOrder extends Model{
 
     use HasFactory;
 
-    protected $table = 'tb_student_order';
+    protected $table = 'student_orders';
     protected $fillable = [
-        'id',
         'student_service_place',
         'date',
         'firstname',

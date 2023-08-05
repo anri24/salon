@@ -13,12 +13,10 @@ class StudentService extends Model{
 
     use HasFactory;
 
-    protected $table = 'tb_student_sercive';
+    protected $table = 'student_services';
     protected $fillable = [
-        'id',
         'student_service_place',
         'service',
-        
     ];
 
 
@@ -26,6 +24,6 @@ class StudentService extends Model{
     public function studentServicePlace(){
         return $this->belongsTo(StudentServicePlace::class ,'student_service_place');
     }
-    
+
 
 }
