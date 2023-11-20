@@ -9,19 +9,20 @@ use App\Models\StudentOrder;
 use App\Models\Comment;
 
 
-
-class StudentController extends Controller{
-    function forStudentsShow(){
-        $studentServicePlace = StudentServicePlace::with('studentService','studentOrder')->get();
+class StudentController extends Controller
+{
+    function index()
+    {
+        $studentServicePlace = StudentServicePlace::with('studentService', 'studentOrder')->get();
         $studentService = StudentService::with('studentServicePlace')->get();
         $studentOrder = StudentOrder::with('studentServicePlaceForOrders')->get();
         $comment = Comment::all();
 
-
-        return view('main.forstudent', compact('studentService','studentServicePlace','studentOrder','comment'));
+        return view('main.forstudent', compact('studentService', 'studentServicePlace', 'studentOrder', 'comment'));
     }
 
-    function studentOrederInsert(Request $request){
+    function storeStudentOrder(Request $request)
+    {
         $StudentOrder = new StudentOrder();
         $StudentOrder->student_service_place = $request->input('student_services_place');
         $StudentOrder->date = $request->input('student_date');
@@ -30,9 +31,7 @@ class StudentController extends Controller{
         $StudentOrder->number = $request->input('number');
         $StudentOrder->sms = $request->input('sms');
         $StudentOrder->save();
-        return redirect('success');
-       
 
-        
+        return redirect('success');
     }
 }

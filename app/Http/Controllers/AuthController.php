@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
+    public function index()
+    {
+        return view('auth.login');
+    }
+
     public function userLogin(Request $request){
         $request->validate([
             'number'=>'required',
@@ -20,6 +25,7 @@ class AuthController extends Controller
         if(Auth::attempt($datas)){
             return redirect('admin');
         }
+
         return redirect('login')->with('fail','მომხმარებელი ან პაროლი არასწორია');
     }
 
@@ -34,12 +40,14 @@ class AuthController extends Controller
         if(Auth::check()){
             return view('admin/customers_add_main_service');
         }
+
         return redirect('login');
     }
     public function students_add_main_service(){
         if(Auth::check()){
             return view('admin/students_add_main_service');
         }
+
         return redirect('login');
     }
 
