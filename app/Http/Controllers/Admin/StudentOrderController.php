@@ -10,14 +10,16 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentOrderController extends Controller
 {
-    function index(){
-        $studentServicePlace = StudentServicePlace::with('studentService','studentOrder')->get();
+    function index()
+    {
+        $studentServicePlace = StudentServicePlace::with('studentService', 'studentOrder')->get();
         $studentOrder = StudentOrder::with('studentServicePlaceForOrders')->get();
 
-        return view('admin.students_orders', compact('studentOrder','studentServicePlace'));
+        return view('admin.students_orders', compact('studentOrder', 'studentServicePlace'));
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $studentService = StudentOrder::find($id);
         $studentService->delete();
         return redirect('students_orders');

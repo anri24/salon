@@ -11,23 +11,26 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomerServiceController extends Controller
 {
-    function index(){
+    function index()
+    {
         $customerServicePlace = CustomerServicePlace::with('customerService')->get();
-        $customerService = CustomerService::with('customerServicePlace','customerOrder')->get();
+        $customerService = CustomerService::with('customerServicePlace', 'customerOrder')->get();
         $customerOrder = CustomerOrder::with('custmoerServiceForOrder')->get();
-        return view('admin.customers_services', compact('customerService','customerServicePlace','customerOrder'));
+        return view('admin.customers_services', compact('customerService', 'customerServicePlace', 'customerOrder'));
     }
 
 
-    function add(){
+    function add()
+    {
         $customerServicePlace = CustomerServicePlace::with('customerService')->get();
-        $customerService = CustomerService::with('customerServicePlace','customerOrder')->get();
+        $customerService = CustomerService::with('customerServicePlace', 'customerOrder')->get();
         $customerOrder = CustomerOrder::with('custmoerServiceForOrder')->get();
-        return view('admin.customers_add_service', compact('customerService','customerServicePlace','customerOrder'));
+        return view('admin.customers_add_service', compact('customerService', 'customerServicePlace', 'customerOrder'));
     }
 
 
-    function store(Request $request){
+    function store(Request $request)
+    {
         $customerService = new CustomerService();
         $customerService->customer_service_place = $request->input('customer_services_place');
         $customerService->service = $request->input('service');
@@ -38,13 +41,15 @@ class CustomerServiceController extends Controller
 
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $customerServicePlace = CustomerServicePlace::with('customerService')->get();
         $customerService = CustomerService::find($id);
-        return view('admin.customers_service_edit', compact('customerService','customerServicePlace'));
+        return view('admin.customers_service_edit', compact('customerService', 'customerServicePlace'));
     }
 
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+    {
         $customerService = CustomerService::find($id);
         $customerService->customer_service_place = $request->input('customer_services_place');
         $customerService->service = $request->input('service');
@@ -55,18 +60,21 @@ class CustomerServiceController extends Controller
 
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $customerService = CustomerService::find($id);
         $customerService->delete();
         return redirect('customers_services');
     }
 
 
-    public function addServicePlace(){
+    public function addServicePlace()
+    {
         return view('admin/customers_add_main_service');
     }
 
-    public function storeServicePlace(Request $request){
+    public function storeServicePlace(Request $request)
+    {
         $customerServicePlace = new CustomerServicePlace();
         $customerServicePlace->name = $request->input('customers_service_place');
         $customerServicePlace->save();
