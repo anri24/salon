@@ -106,14 +106,18 @@
             <li><a style="font-size: 15px;" class="dropdown-item" href="{{url('students_services')}}">მოსწავლის სერვისები</a></li>
           </ul>
         </li>
-      
-    
+
+
 
 
 
 <li><a id="headertxt" href="{{ url('photo') }}">პორთფოლიოს დამატება</a></li>
 
-<li><a style="font-size: 15px;"  href="{{ url('logout') }}">გასვლა</a></li>
+<li><form method="post" action="{{ route('logout') }}">
+    @csrf
+        <button style="font-size: 15px;" type="submit">გასვლა</button>
+    </form>
+    </li>
 
 
 </ul>
@@ -216,7 +220,7 @@
 	</ul>
 	</div>
 	</div> -->
-	
+
 
 	</div>
 	</div>

@@ -12,10 +12,10 @@
     <center>
 <img src="img/logo3.png" style="width: 200px;margin-top:20vh" alt="logo"><br>
 <h1>წარმატებული დაჯავშნა</h1><br>
-<a href="{{ url('') }}"><button type="button" class="btn btn-success">მთავარ გვერდზე გადასვლა</button></a>
+<a href="{{ route('main.index') }}"><button type="button" class="btn btn-success">მთავარ გვერდზე გადასვლა</button></a>
     </center>
 
 
-    
+
 </body>
 </html>

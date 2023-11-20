@@ -32,28 +32,27 @@ use App\Http\Controllers\CommentController;
 
 Route::controller(CustomerController::class)->group(function () {
     Route::get('/', 'index')->name('main.index');
-    Route::get('/about', 'about')->name('about');
-    Route::get('/contact', 'contact')->name('contact');
-    Route::get('/portfolio', 'portfolio')->name('portfolio');
-    Route::get('/comment', 'comment')->name('comment');
+    Route::get('about', 'about')->name('about');
+    Route::get('contact', 'contact')->name('contact');
+    Route::get('portfolio', 'portfolio')->name('portfolio');
+    Route::get('comment', 'comment')->name('comment');
 
-    Route::post('insert_customer_order', 'storeCustomerOrder')->name('store.customer.order');
-    Route::post('/add_comment', 'storeComment')->name('store.comment');
+    Route::post('store/customer/order', 'storeCustomerOrder')->name('store.customer.order');
+    Route::post('store/comment', 'storeComment')->name('store.comment');
 });
 
 Route::controller(StudentController::class)->group(function () {
-    Route::get('/for-students', 'index')->name('student.index');
-    Route::post('insert_student_order', 'storeStudentOrder')->name('store.student.order');
+    Route::get('student', 'index')->name('student.index');
+    Route::post('store/student/order', 'storeStudentOrder')->name('store.student.order');
 });
 
-
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/login', 'index')->name('login');
-    Route::post('/user_login', 'userLogin')->name('user.login');
-    Route::get('logout', [AuthController::class, 'logout'])->name('logout'); // shesacvlelia GET to POST
+    Route::get('login', 'index')->name('login');
+    Route::post('user_login', 'userLogin')->name('user.login');
+    Route::post('logout',  'logout')->name('logout');
 });
 
 
 Route::middleware('web')
-    ->prefix('admin')
+//    ->prefix('admin')
     ->group(base_path('routes/admin.php'));
