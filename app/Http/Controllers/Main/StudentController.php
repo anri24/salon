@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Main;
 
-use Illuminate\Http\Request;
-use App\Models\StudentServicePlace;
-use App\Models\StudentService;
-use App\Models\StudentOrder;
+use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\StudentOrder;
+use App\Models\StudentService;
+use App\Models\StudentServicePlace;
+use Illuminate\Http\Request;
 
 
 class StudentController extends Controller

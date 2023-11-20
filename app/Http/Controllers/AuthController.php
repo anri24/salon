@@ -16,41 +16,26 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function userLogin(Request $request){
+    public function userLogin(Request $request)
+    {
         $request->validate([
-            'number'=>'required',
-            'password'=>'required'
+            'number' => 'required',
+            'password' => 'required'
         ]);
-        $datas = $request->only('number','password');
-        if(Auth::attempt($datas)){
+        $datas = $request->only('number', 'password');
+        if (Auth::attempt($datas)) {
             return redirect('admin');
         }
 
-        return redirect('login')->with('fail','მომხმარებელი ან პაროლი არასწორია');
+        return redirect('login')->with('fail', 'მომხმარებელი ან პაროლი არასწორია');
     }
 
-
-    public function logout(){
+    public function logout()
+    {
         Session::flush();
         Auth::logout();
-        return redirect('login');
-    }
-
-    public function customers_add_main_service(){
-        if(Auth::check()){
-            return view('admin/customers_add_main_service');
-        }
 
         return redirect('login');
     }
-    public function students_add_main_service(){
-        if(Auth::check()){
-            return view('admin/students_add_main_service');
-        }
-
-        return redirect('login');
-    }
-
-
 
 }

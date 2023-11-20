@@ -72,7 +72,7 @@
 <header  class="beautypress-header-section beautypress-version-1 beautypress-extra-css menu-skew bg-color-purple header-height-calc-minus navbar-fixed">
 <div class="container">
 <div class="beautypress-logo-wraper">
-<a href="{{url('admin')}}" class="beautypress-logo beautypress-version-2  beautypress-version-4">
+<a href="{{ route('customer.orders') }}" class="beautypress-logo beautypress-version-2  beautypress-version-4">
 <img src="img/logo3.png" id="logoclass" alt="logo">
 </a>
 </div>
@@ -94,7 +94,7 @@
 <div class="nav-menus-wrapper">
 <ul class="nav-menu">
 
-<li><a id="headertxt" href="{{url('students_orders')}}">მოსწავლეების ცხრილი</a></li>
+<li><a id="headertxt" href="{{ route('student.orders') }}">მოსწავლეების ცხრილი</a></li>
 
 
         <li class="nav-item dropdown">
@@ -102,8 +102,8 @@
             სერვისები
           </a>
           <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a style="font-size: 15px;" class="dropdown-item" href="{{url('customers_services')}}">კლიენტის სერვისები</a></li>
-            <li><a style="font-size: 15px;" class="dropdown-item" href="{{url('students_services')}}">მოსწავლის სერვისები</a></li>
+            <li><a style="font-size: 15px;" class="dropdown-item" href="{{ route('customer.services') }}">კლიენტის სერვისები</a></li>
+            <li><a style="font-size: 15px;" class="dropdown-item" href="{{ route('student.services') }}">მოსწავლის სერვისები</a></li>
           </ul>
         </li>
 
@@ -111,7 +111,7 @@
 
 
 
-<li><a id="headertxt" href="{{ url('photo') }}">პორთფოლიოს დამატება</a></li>
+<li><a id="headertxt" href="{{ route('photos') }}">პორთფოლიოს დამატება</a></li>
 
 <li><form method="post" action="{{ route('logout') }}">
     @csrf
@@ -179,7 +179,7 @@
 	<div class="col-md-6 col-lg-4">
 	<div class="beautypress-single-footer-v2">
 	<div class="beautypress-footer-logo-v2">
-	<a href="{{url('')}}">
+	<a href="{{ route('main.index') }}">
 	<img src="img/logo-footer-v5-1.png" alt="">
 	</a>
 	</div>

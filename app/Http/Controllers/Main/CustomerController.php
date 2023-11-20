@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Main;
 
+use App\Http\Controllers\Controller;
+use App\Models\Comment;
+use App\Models\CustomerOrder;
+use App\Models\CustomerService;
+use App\Models\CustomerServicePlace;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
-use App\Models\CustomerServicePlace;
-use App\Models\CustomerService;
-use App\Models\CustomerOrder;
-use App\Models\Comment;
 
 
 class CustomerController extends Controller
@@ -37,7 +38,7 @@ class CustomerController extends Controller
         $photo = Gallery::all();
         return view('main.portfolio', compact('photo'));
     }
-    
+
     public function comment()
     {
         return view('main.comment');

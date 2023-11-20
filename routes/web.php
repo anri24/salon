@@ -1,21 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\AdminAddServiceCustomerController;
-use App\Http\Controllers\AdminAddServiceStudentController;
-use App\Http\Controllers\AdminCustomerServiceController;
-use App\Http\Controllers\AdminStudentServiceController;
-use App\Http\Controllers\AdminCustomerOrderController;
-use App\Http\Controllers\AdminStudentOrderController;
-use App\Http\Controllers\adminAddMainServiceCustomerController;
-use App\Http\Controllers\adminAddMainServiceStudentController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\EditController;
-use App\Http\Controllers\DeleteController;
-use App\Http\Controllers\PhotoController;
-use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Main\CustomerController;
+use App\Http\Controllers\Main\StudentController;
+use Illuminate\Support\Facades\Route;
 
 
 /*
@@ -53,6 +41,6 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
-Route::middleware('web')
-//    ->prefix('admin')
+Route::middleware(['web','auth'])
+    ->prefix('admin')
     ->group(base_path('routes/admin.php'));
