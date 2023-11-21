@@ -14,7 +14,6 @@ class PortfolioController extends Controller
         return view('admin.upload_photo', compact('photo'));
     }
 
-
     public function store(Request $request)
     {
         $img = new Gallery();
@@ -24,14 +23,15 @@ class PortfolioController extends Controller
         $file->move('images/photos/', $filename);
         $img->photo = $filename;
         $img->save();
-        return redirect('photo');
 
+        return redirect('photo');
     }
 
     public function destroy($id)
     {
         $photo = Gallery::find($id);
         $photo->delete();
+
         return redirect('photo');
     }
 }

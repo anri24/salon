@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::controller(CustomerController::class)->group(function () {
     Route::get('/', 'index')->name('main.index');
     Route::get('about', 'about')->name('about');
@@ -37,10 +36,9 @@ Route::controller(StudentController::class)->group(function () {
 Route::controller(AuthController::class)->group(function () {
     Route::get('login', 'index')->name('login');
     Route::post('user_login', 'userLogin')->name('user.login');
-    Route::post('logout',  'logout')->name('logout');
+    Route::post('logout', 'logout')->name('logout');
 });
 
-
-Route::middleware(['web','auth'])
+Route::middleware(['web', 'auth'])
     ->prefix('admin')
     ->group(base_path('routes/admin.php'));

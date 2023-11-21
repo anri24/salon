@@ -19,15 +19,14 @@ class CustomerServiceController extends Controller
         return view('admin.customers_services', compact('customerService', 'customerServicePlace', 'customerOrder'));
     }
 
-
     function add()
     {
         $customerServicePlace = CustomerServicePlace::with('customerService')->get();
         $customerService = CustomerService::with('customerServicePlace', 'customerOrder')->get();
         $customerOrder = CustomerOrder::with('custmoerServiceForOrder')->get();
+
         return view('admin.customers_add_service', compact('customerService', 'customerServicePlace', 'customerOrder'));
     }
-
 
     function store(Request $request)
     {
@@ -36,15 +35,15 @@ class CustomerServiceController extends Controller
         $customerService->service = $request->input('service');
         $customerService->price = $request->input('price');
         $customerService->save();
+
         return redirect('customers_services');
-
-
     }
 
     public function edit($id)
     {
         $customerServicePlace = CustomerServicePlace::with('customerService')->get();
         $customerService = CustomerService::find($id);
+
         return view('admin.customers_service_edit', compact('customerService', 'customerServicePlace'));
     }
 
@@ -55,9 +54,8 @@ class CustomerServiceController extends Controller
         $customerService->service = $request->input('service');
         $customerService->price = $request->input('price');
         $customerService->update();
+
         return redirect('customers_services');
-
-
     }
 
     public function destroy($id)

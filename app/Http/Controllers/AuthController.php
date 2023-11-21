@@ -10,12 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-
     public function index()
     {
         return view('auth.login');
     }
-
     public function userLogin(Request $request)
     {
         $request->validate([
@@ -29,7 +27,6 @@ class AuthController extends Controller
 
         return redirect('login')->with('fail', 'მომხმარებელი ან პაროლი არასწორია');
     }
-
     public function logout()
     {
         Session::flush();

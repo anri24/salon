@@ -19,7 +19,6 @@ class StudentServiceController extends Controller
         return view('admin.students_services', compact('studentService', 'studentServicePlace', 'studentOrder'));
     }
 
-
     function add()
     {
         $studentServicePlace = StudentServicePlace::with('studentService', 'studentOrder')->get();
@@ -35,8 +34,6 @@ class StudentServiceController extends Controller
         $studentService->service = $request->input('service');
         $studentService->save();
         return redirect('students_services');
-
-
     }
 
     function edit($id)
@@ -55,14 +52,13 @@ class StudentServiceController extends Controller
         $studentService->price = $request->input('price');
         $studentService->update();
         return redirect('students_services');
-
-
     }
 
     public function destroy($id)
     {
         $studentService = StudentService::find($id);
         $studentService->delete();
+
         return redirect('students_services');
     }
 
@@ -81,6 +77,5 @@ class StudentServiceController extends Controller
         $studentServicePlace->save();
 
         return redirect('students_services');
-
     }
 }
