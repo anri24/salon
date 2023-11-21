@@ -14,30 +14,15 @@
                     <div class="beautypress-single-pricing-table">
                         <!-- forma iqneba aq -->
                         <center>
-                            <form method="post" action="{{ route('update.student.service',$studentService->id) }}">
+                            <form method="post" action="{{ route('update.student.service',$service->id) }}">
                                 @csrf
                                 @method('PUT')
-                                <label for="service" class="form-label">აირჩიეთ სერვისის ჩარჩო</label>
-                                <select class="form-select" aria-label="Default select example"
-                                        name="student_services_place">
-                                    <option selected>აირჩიეთ სერვისის ჩარჩო</option>
-                                    @foreach($studentServicePlace as $ssp)
-                                        <option selected value="{{ $ssp->id }}">{{ $ssp->name }}</option>
-                                    @endforeach
 
-                                </select><br>
                                 <div class="mb-3">
                                     <label for="service" class="form-label">სერვისი</label>
-                                    <input type="text" value="{{ $studentService->service }}" name="service"
+                                    <input type="text" value="{{ $service->service }}" name="service"
                                            class="form-control" id="service">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="price" class="form-label">ფასი</label>
-                                    <input type="number" value="{{ $studentService->price }}" name="price"
-                                           class="form-control" id="price">
-                                </div>
-
-
                                 <center>
                                     <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                                 </center>

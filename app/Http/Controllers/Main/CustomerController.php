@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentRequest;
+use App\Http\Requests\CustomerOrderRequest;
 use App\Models\Comment;
 use App\Models\CustomerOrder;
 use App\Models\CustomerService;
@@ -15,12 +17,10 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customerServicePlace = CustomerServicePlace::with('customerService')->get();
-        $customerService = CustomerService::with('customerServicePlace', 'customerOrder')->get();
-        $customerOrder = CustomerOrder::with('custmoerServiceForOrder')->get();
+        $customerServicePlace = CustomerServicePlace::all();
+        $customerServices = CustomerService::all();
         $comment = Comment::all();
-
-        return view('main.index', compact('customerService', 'customerServicePlace', 'customerOrder', 'comment'));
+        return view('main.index', compact(['customerServicePlace', 'comment','customerServices']));
     }
 
     public function about()
@@ -44,30 +44,18 @@ class CustomerController extends Controller
         return view('main.comment');
     }
 
-    public function storeCustomerOrder(Request $request)
+    public function storeCustomerOrder(CustomerOrderRequest $request)
     {
-        $customerOrder = new CustomerOrder();
-        $customerOrder->services = $request->input('customer_services');
-        $customerOrder->date = $request->input('customer_date');
-        $customerOrder->time = $request->input('time');
-        $customerOrder->firstname = $request->input('firstname');
-        $customerOrder->lastname = $request->input('lastname');
-        $customerOrder->number = $request->input('number');
-        $customerOrder->sms = $request->input('sms');
-        $customerOrder->save();
+        CustomerOrder::create($request->validated());
 
         return redirect('success');
-
     }
 
 
-    function storeComment(Request $request)
+    function storeComment(CommentRequest $request)
     {
-        $comment = new Comment();
-        $comment->fullname = $request->input('fullname');
-        $comment->comment = $request->input('comment');
-        $comment->save();
+        Comment::create($request->validated());
 
-        return redirect('');
+        return redirect()->route('main.index');
     }
 }

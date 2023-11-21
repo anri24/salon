@@ -12,16 +12,13 @@ class StudentOrderController extends Controller
 {
     function index()
     {
-        $studentServicePlace = StudentServicePlace::with('studentService', 'studentOrder')->get();
-        $studentOrder = StudentOrder::with('studentServicePlaceForOrders')->get();
-
-        return view('admin.students_orders', compact('studentOrder', 'studentServicePlace'));
+        $studentOrder = StudentOrder::all();
+        return view('admin.students_orders', compact('studentOrder'));
     }
 
-    public function destroy($id)
+    public function destroy(StudentOrder $order)
     {
-        $studentService = StudentOrder::find($id);
-        $studentService->delete();
-        return redirect('students_orders');
+        $order->delete();
+        return redirect()->route('student.orders');
     }
 }

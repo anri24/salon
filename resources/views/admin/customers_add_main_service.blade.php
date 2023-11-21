@@ -17,7 +17,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="services-title" class="form-label">სახელი</label>
-                                <input type="text" name="customers_service_place" class="form-control"
+                                <input type="text" name="name" class="form-control"
                                        id="services-title">
                             </div>
 

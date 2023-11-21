@@ -39,7 +39,7 @@
                                     <td>{{ $so->lastname }}</td>
                                     <td>{{ $so->number }}</td>
 
-                                    <td>{{ $so->studentServicePlaceForOrders->name }}</td>
+                                    <td>{{ $so->studentServicePlace->name }}</td>
 
 
                                     @if(isset($so->sms))

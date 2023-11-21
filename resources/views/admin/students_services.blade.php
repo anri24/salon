@@ -16,30 +16,28 @@
             </div>
             <div class="row">
                 <!-- aqedan gaamravle -->
-                @foreach($studentServicePlace as $ssp)
+                @foreach($studentServicePlace as $place)
                     <div style="margin-top:20px" class="col-md-12 col-sm-12 col-lg-6 col-xl-6">
                         <div class="beautypress-single-pricing-table">
                             <div class="beautypress-pricing-footer">
-                                <center><h2 name="service-title">{{ $ssp->name }} - <span name="service-price">{{ $ssp->price }} ლარი/თვეში</span>
+                                <center><h2 name="service-title">{{ $place->name }} - <span name="service-price">{{ $place->price }} ლარი/თვეში</span>
                                     </h2></center>
-                                <h6 align=right><a id="add_service" href="{{ route('add.student.service') }}">სერვისის
+                                <h6 align=right><a id="add_service" href="{{ route('add.student.service',$place) }}">სერვისის
                                         დამატება</a></h6><br>
 
                                 <ul class="beautypress-both-side-list">
                                     <center><h3>სწავლაში შედის:</h3></center>
                                     <br>
 
-                                    @foreach($studentService as $ss)
-                                        @if($ssp->id == $ss->student_service_place)
-                                            <li name="service-name">{{ $ss->service }}<a
-                                                    href="{{ route('edit.student.service',$ss->id) }}">
+                                    @foreach($place->studentService as $service)
+                                            <li name="service-name">{{ $service->service }}<a
+                                                    href="{{ route('edit.student.service',$service->id) }}">
                                                     <button style="margin-left:20px;" class="btn btn-warning">რედაქტ.
                                                     </button>
-                                                </a><a href="{{ route('delete.student.service',$ss->id) }}">
+                                                </a><a href="{{ route('delete.student.service',$service->id) }}">
                                                     <button style="margin-left:5px;" class="btn btn-danger">წაშლა
                                                     </button>
                                                 </a></li>
-                                        @endif
                                     @endforeach
                                 </ul>
                             </div>

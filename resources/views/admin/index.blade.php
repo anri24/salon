@@ -4,7 +4,7 @@
 
     <section id="admin_panel_sizes" name="new-service"
              class="beautypress-pricing-table-section beautypress-padding-bottom  beautypress-bg"
-             style="background-image: url(img/shop-open-img.jpg)">
+             style="background-image: url(img/shop-open-img.jpg); margin-top: 5%">
         <div class="container">
             <div class="beautypress-section-headinig beautypress-section-headinig-white">
                 <h3>კლიენტებს დაჯავშნილი ცხრილი</h3>
@@ -17,7 +17,6 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">ID</th>
                                 <th scope="col">თარიღი</th>
                                 <th scope="col">დრო</th>
                                 <th scope="col">სახელი</th>
@@ -29,36 +28,24 @@
 
                             </tr>
                             </thead>
-                            @foreach($customerOrder as $co)
+                            @foreach($customerOrder as $order)
                                 <tbody>
                                 <tr>
-
-                                    <td scope="row">{{ $co->id }}</td>
-
-                                    <td>{{ $co->date }}</td>
-                                    <td>{{ $co->time }}</td>
-                                    <td>{{ $co->firstname }}</td>
-                                    <td>{{ $co->lastname }}</td>
-                                    <td>{{ $co->number }}</td>
-                                    @if(isset($co->custmoerServiceForOrder->service))
-                                        <td>{{ $co->custmoerServiceForOrder->service }}</td>
-                                    @else
-                                        <td>სერვისის გარეშე</td>
-
-                                    @endif
-                                    @if(isset($co->sms))
-                                        <td>{{ $co->sms }}</td>
+                                    <td>{{ $order->date }}</td>
+                                    <td>{{ $order->time }}</td>
+                                    <td>{{ $order->firstname }}</td>
+                                    <td>{{ $order->lastname }}</td>
+                                    <td>{{ $order->number }}</td>
+                                    <td>{{ $order->customerService->service }}</td>
+                                    @if(isset($order->sms))
+                                        <td>{{ $order->sms }}</td>
                                     @else
                                         <td>შეტყობინების გარეშე</td>
-
                                     @endif
-                                    <td><a href="{{ route('delete.customer.order',$co->id) }}">
+                                    <td><a href="{{ route('delete.customer.order',$order->id) }}">
                                             <button type="button" class="btn btn-danger">წაშლა</button>
                                         </a></td>
-
                                 </tr>
-
-
                                 </tbody>
                             @endforeach
                         </table>

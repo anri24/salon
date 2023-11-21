@@ -12,16 +12,13 @@ class CustomerOrderController extends Controller
 {
     function index()
     {
-        $customerService = CustomerService::with('customerServicePlace', 'customerOrder')->get();
-        $customerOrder = CustomerOrder::with('custmoerServiceForOrder')->get();
-
-        return view('admin.index', compact('customerOrder', 'customerService'));
+        $customerOrder = CustomerOrder::with('customerService')->get();
+        return view('admin.index', compact('customerOrder'));
     }
 
-    public function destroy($id)
+    public function destroy(CustomerOrder $order)
     {
-        $customerOrder = CustomerOrder::find($id);
-        $customerOrder->delete();
-        return redirect('admin');
+        $order->delete();
+        return redirect()->route('customer.orders');
     }
 }

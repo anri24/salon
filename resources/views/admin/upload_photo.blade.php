@@ -27,9 +27,9 @@
                                     <div class="beautypress-photo-gallery-grid-item hair">
                                         <div class="beautypress-single-photo-gallery beautypress-3d">
                                             <div class="beautypress-3d-project-card">
-                                                <img src="{{ asset('images/photos/'.$img->photo) }}" alt="">
+                                                <img src="{{ asset('gallery/'.$img->photo) }}" alt="">
                                                 <div class="beautypress-photo-gallery-content">
-                                                    <a href="{{ asset('images/photos/'.$img->photo) }}"
+                                                    <a href="{{ asset('gallery/'.$img->photo) }}"
                                                        class="beautypress-image-popup beautypress-iocn-btn full-round-btn bg-color-purple">
                                                         <i class="fa fa-eye"></i>
                                                     </a>

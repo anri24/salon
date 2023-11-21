@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
+use App\Services\GalleryService;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
@@ -14,24 +15,15 @@ class PortfolioController extends Controller
         return view('admin.upload_photo', compact('photo'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request,GalleryService $service)
     {
-        $img = new Gallery();
-        $file = $request->file('image');
-        $ext = $file->getClientOriginalName();
-        $filename = time() . '.' . $ext;
-        $file->move('images/photos/', $filename);
-        $img->photo = $filename;
-        $img->save();
-
-        return redirect('photo');
+        Gallery::create(['photo'=>$service->storeImage($request,'gallery','image')]);
+        return redirect()->route('photos');
     }
 
-    public function destroy($id)
+    public function destroy(Gallery $gallery)
     {
-        $photo = Gallery::find($id);
-        $photo->delete();
-
-        return redirect('photo');
+        $gallery->delete();
+        return redirect()->route('photos');
     }
 }

@@ -13,29 +13,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700%7CNiconne" rel="stylesheet">
-<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 
-<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
 
-<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 
-<link rel="stylesheet" href="css/xs-icon.css">
+<link rel="stylesheet" href="{{ asset('css/xs-icon.css') }}">
 
-<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
 
-<link rel="stylesheet" href="css/themeSwither.css">
+<link rel="stylesheet" href="{{ asset('css/themeSwither.css') }}">
 
-<link rel="stylesheet" href="css/isotope.css">
+<link rel="stylesheet" href="{{ asset('css/isotope.css') }}">
 
-<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
 
-<link rel="stylesheet" href="css/plugins.css" />
+<link rel="stylesheet" href="{{ asset('css/plugins.css') }}" />
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-<link rel="stylesheet" href="css/responsive.css" />
+<link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
@@ -50,7 +50,7 @@
 <div class="preloader-window left-window"></div>
 <div class="preloader-window right-window"></div>
 <div class="preloader-content">
-<img src="img/preloader-logo2.png" alt="preloader">
+<img src="{{ asset('img/preloader-logo2.png') }}" alt="preloader">
 
 <h2>სილამაზის სალონი <br> ნატალი</h2>
 
@@ -73,7 +73,7 @@
 <div class="container">
 <div class="beautypress-logo-wraper">
 <a href="{{ route('customer.orders') }}" class="beautypress-logo beautypress-version-2  beautypress-version-4">
-<img src="img/logo3.png" id="logoclass" alt="logo">
+<img src="{{ asset('img/logo3.png') }}" id="logoclass" alt="logo">
 </a>
 </div>
 </div>
@@ -81,7 +81,7 @@
 <div class="container">
 <ul class="beautypress-simple-iocn-list beautypress-version-1">
 <li>ადმინის გვერდი</li>
-<li><a id="main_page_link" href="{{ url('') }}">მთავარ საიტზე გადასვლა</a></li>
+<li><a id="main_page_link" href="{{ route('main.index') }}">მთავარ საიტზე გადასვლა</a></li>
 </ul>
 </div>
 </div>
@@ -180,7 +180,7 @@
 	<div class="beautypress-single-footer-v2">
 	<div class="beautypress-footer-logo-v2">
 	<a href="{{ route('main.index') }}">
-	<img src="img/logo-footer-v5-1.png" alt="">
+	<img src="{{ asset('img/logo-footer-v5-1.png') }}" alt="">
 	</a>
 	</div>
 	<ul class="beautypress-social-list beautypress-version-6">
@@ -229,19 +229,19 @@
 
 </main>
 
-<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/plugins.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-datepicker.min.js"></script>
-<script src="js/isotope.pkgd.min.js"></script>
-<script src="js/jquery.ajaxchimp.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/appear.js"></script>
-<script src="js/spectragram.min.js"></script>
-<script src="js/themeSwither.js"></script>
+<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('js/plugins.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('js/appear.js') }}"></script>
+<script src="{{ asset('js/spectragram.min.js') }}"></script>
+<script src="{{ asset('js/themeSwither.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=AIzaSyCy7becgYuLwns3uumNm6WdBYkBpLfy44k"></script>
-<script src="js/main.js"></script>
+<script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 <!-- Mirrored from demo.xpeedstudio.com/html/beautypress/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 11 Oct 2022 12:51:32 GMT -->

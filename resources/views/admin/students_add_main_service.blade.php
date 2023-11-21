@@ -12,20 +12,17 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4">
                     <div class="beautypress-single-pricing-table">
-                        <!-- forma iqneba aq -->
                         <form action="{{ route('store.student.service.place') }}" method="post">
                             @csrf
                             <div class="mb-3">
                                 <label for="services-title" class="form-label">სახელი</label>
-                                <input type="text" name="student_service_place" class="form-control"
+                                <input type="text" name="name" class="form-control"
                                        id="services-title">
                             </div>
                             <div class="mb-3">
                                 <label for="price" class="form-label">ფასი</label>
                                 <input type="number" name="price" class="form-control" id="price">
                             </div>
-
-
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
 

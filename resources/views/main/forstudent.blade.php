@@ -123,7 +123,7 @@
 <h2>სერვისები და თარიღი</h2>
 <div class="beautypress-select">
 <div class="input-group">
-<select name="student_services_place" id="appointment-service" class="form-control" name="select-service">
+<select name="student_service_place_id" id="appointment-service" class="form-control" name="select-service">
 <option value="none">აირჩიე სერვისი</option>
 @foreach($studentServicePlace as $ssp)
 <option value="{{ $ssp->id }}">{{ $ssp->name }}</option>
@@ -134,7 +134,7 @@
 <div class="beautypress-spilit-container">
 <div class="beautypress-date-select beautypress-select">
 <div class="input-group">
-<input type="text" id="appointment-date" class="form-control datepicker" name="student_date" placeholder="თარიღი">
+<input type="text" id="appointment-date" class="form-control datepicker" name="date" placeholder="თარიღი">
 </div>
 </div>
 

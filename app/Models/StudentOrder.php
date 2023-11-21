@@ -13,6 +13,7 @@ class StudentOrder extends Model{
     use HasFactory;
 
     protected $table = 'student_orders';
+
     protected $fillable = [
         'student_service_place_id',
         'date',
@@ -22,7 +23,7 @@ class StudentOrder extends Model{
         'sms',
     ];
 
-    public function studentServicePlaceForOrders(){
+    public function studentServicePlace(){
         return $this->belongsTo(StudentServicePlace::class ,'student_service_place_id','id');
     }
 

@@ -62,19 +62,17 @@
 	<h3>სერვისები</h3>
 	</div>
 	<div class="row">
-		@foreach($customerServicePlace as $csp)
+		@foreach($customerServicePlace as $place)
 	<div class="col-md-12 col-sm-12 col-lg-4 col-xl-4">
 	<div class="beautypress-single-pricing-table">
 
 	<div class="beautypress-pricing-footer">
-		<center><h2 name="service-title">{{ $csp->name }}</h2></center><br>
+		<center><h2 name="service-title">{{ $place->name }}</h2></center><br>
 <hr>
 
 	<ul class="beautypress-both-side-list">
-		@foreach($customerService as $cs)
-		@if($csp->id == $cs->customer_service_place)
-		<li name="service-name">{{ $cs->service }}<span name="service-price">{{ $cs->price }} ლარი</span></li>
-		@endif
+		@foreach($place->customerService as $service)
+		<li name="service-name">{{ $service->service }}<span name="service-price">{{ $service->price }} ლარი</span></li>
 		@endforeach
 	</ul>
 	</div>
@@ -121,10 +119,10 @@
 <h2>სერვისები და თარიღი</h2>
 <div class="beautypress-select">
 <div class="input-group">
-<select name="customer_services" id="appointment-service" class="form-control" name="select-service">
+<select name="service_id" id="appointment-service" class="form-control" name="select-service">
 <option value="none">აირჩიე სერვისი</option>
-@foreach($customerService as $cs)
-<option value="{{ $cs->id }}">{{ $cs->service }}</option>
+@foreach($customerServices as $service)
+<option value="{{ $service->id }}">{{ $service->service }}</option>
 @endforeach
 
 </select>
@@ -133,7 +131,7 @@
 <div class="beautypress-spilit-container">
 <div class="beautypress-date-select beautypress-select">
 <div class="input-group">
-<input type="text" id="customer_date" class="form-control datepicker" name="customer_date" placeholder="თარიღი">
+<input type="text" id="date" class="form-control datepicker" name="date" placeholder="თარიღი">
 </div>
 </div>
 <div class="beautypress-select">

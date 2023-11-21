@@ -16,25 +16,23 @@
             </div>
             <div class="row">
                 <!-- aqedan gaamravle -->
-                @foreach($customerServicePlace as $csp)
+                @foreach($customerServicePlace as $place)
                     <div style="margin-top:20px" class="col-md-12 col-sm-12 col-lg-6 col-xl-6">
                         <div class="beautypress-single-pricing-table">
                             <div class="beautypress-pricing-footer">
-                                <center><h2 name="service-title">{{ $csp->name }}</h2></center>
-                                <h6 align=right><a id="add_service" href="{{ route('add.customer.service') }}">სერვისის
+                                <center><h2 name="service-title">{{ $place->name }}</h2></center>
+                                <h6 align=right><a id="add_service" href="{{ route('add.customer.service',$place->id) }}">სერვისის
                                         დამატება</a></h6><br>
                                 <ul class="beautypress-both-side-list">
-                                    @foreach($customerService as $cs)
-                                        @if($csp->id == $cs->customer_service_place)
-                                            <li name="service-name">{{ $cs->service }}<span name="service-price">{{$cs->price}} ლარი</span><a
-                                                    href="{{ route('edit.customer.service',$cs->id) }}">
+                                    @foreach($place->customerService as $service)
+                                            <li name="service-name">{{ $service->service }}<span name="service-price">{{$service->price}} ლარი</span><a
+                                                    href="{{ route('edit.customer.service',$service->id) }}">
                                                     <button style="margin-left:20px;" class="btn btn-warning">რედაქტ.
                                                     </button>
-                                                </a><a href="{{ route('delete.customer.service',$cs->id) }}">
+                                                </a><a href="{{ route('delete.customer.service',$service->id) }}">
                                                     <button style="margin-left:5px;" class="btn btn-danger">წაშლა
                                                     </button>
                                                 </a></li>
-                                        @endif
                                     @endforeach
                                 </ul>
                             </div>

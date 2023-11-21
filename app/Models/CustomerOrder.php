@@ -21,7 +21,7 @@ class CustomerOrder extends Model{
         'number',
         'sms',
     ];
-    public function custmoerServiceForOrder(){
+    public function customerService(){
         return $this->belongsTo(CustomerService::class,'service_id','id');
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerServicePlaceRequest;
+use App\Http\Requests\CustomerServiceRequest;
 use App\Models\CustomerOrder;
 use App\Models\CustomerService;
 use App\Models\CustomerServicePlace;
@@ -13,71 +15,51 @@ class CustomerServiceController extends Controller
 {
     function index()
     {
-        $customerServicePlace = CustomerServicePlace::with('customerService')->get();
-        $customerService = CustomerService::with('customerServicePlace', 'customerOrder')->get();
-        $customerOrder = CustomerOrder::with('custmoerServiceForOrder')->get();
-        return view('admin.customers_services', compact('customerService', 'customerServicePlace', 'customerOrder'));
+        $customerServicePlace = CustomerServicePlace::all();
+        return view('admin.customers_services', compact('customerServicePlace'));
     }
 
-    function add()
+    function add(CustomerServicePlace $place)
     {
-        $customerServicePlace = CustomerServicePlace::with('customerService')->get();
-        $customerService = CustomerService::with('customerServicePlace', 'customerOrder')->get();
-        $customerOrder = CustomerOrder::with('custmoerServiceForOrder')->get();
-
-        return view('admin.customers_add_service', compact('customerService', 'customerServicePlace', 'customerOrder'));
+        return view('admin.customers_add_service', compact(['place']));
     }
 
-    function store(Request $request)
+    function store(CustomerServiceRequest $request, CustomerServicePlace $place)
     {
-        $customerService = new CustomerService();
-        $customerService->customer_service_place = $request->input('customer_services_place');
-        $customerService->service = $request->input('service');
-        $customerService->price = $request->input('price');
-        $customerService->save();
+        $validate = $request->validated();
+        $validate['customer_service_place_id'] = $place->id;
+        CustomerService::create($validate);
 
-        return redirect('customers_services');
+        return redirect()->route('customer.services');
     }
 
-    public function edit($id)
+    public function edit(CustomerService $service)
     {
-        $customerServicePlace = CustomerServicePlace::with('customerService')->get();
-        $customerService = CustomerService::find($id);
-
-        return view('admin.customers_service_edit', compact('customerService', 'customerServicePlace'));
+        return view('admin.customers_service_edit', compact('service'));
     }
 
-    public function update(Request $request, $id)
+    public function update(CustomerServiceRequest $request, CustomerService $service)
     {
-        $customerService = CustomerService::find($id);
-        $customerService->customer_service_place = $request->input('customer_services_place');
-        $customerService->service = $request->input('service');
-        $customerService->price = $request->input('price');
-        $customerService->update();
-
-        return redirect('customers_services');
+        $service->update($request->validated());
+        return redirect()->route('customer.services');
     }
 
-    public function destroy($id)
+    public function destroy(CustomerService $service)
     {
-        $customerService = CustomerService::find($id);
-        $customerService->delete();
-        return redirect('customers_services');
+        $service->delete();
+        return redirect()->route('customer.services');
     }
 
 
     public function addServicePlace()
     {
-        return view('admin/customers_add_main_service');
+        return view('admin.customers_add_main_service');
     }
 
-    public function storeServicePlace(Request $request)
+    public function storeServicePlace(CustomerServicePlaceRequest $request)
     {
-        $customerServicePlace = new CustomerServicePlace();
-        $customerServicePlace->name = $request->input('customers_service_place');
-        $customerServicePlace->save();
-        return redirect('customers_services');
-
+        CustomerServicePlace::create($request->validated());
+        return redirect()->route('customer.services');
     }
 
 }

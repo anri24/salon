@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StudentServicePlaceRequest;
+use App\Http\Requests\StudentServiceRequest;
 use App\Models\StudentOrder;
 use App\Models\StudentService;
 use App\Models\StudentServicePlace;
@@ -13,69 +15,53 @@ class StudentServiceController extends Controller
 {
     function index()
     {
-        $studentServicePlace = StudentServicePlace::with('studentService', 'studentOrder')->get();
-        $studentService = StudentService::with('studentServicePlace')->get();
-        $studentOrder = StudentOrder::with('studentServicePlaceForOrders')->get();
-        return view('admin.students_services', compact('studentService', 'studentServicePlace', 'studentOrder'));
+        $studentServicePlace = StudentServicePlace::all();
+        return view('admin.students_services', compact('studentServicePlace'));
     }
 
-    function add()
+    function add(StudentServicePlace $place)
     {
-        $studentServicePlace = StudentServicePlace::with('studentService', 'studentOrder')->get();
-        $studentService = StudentService::with('studentServicePlace')->get();
-        $studentOrder = StudentOrder::with('studentServicePlaceForOrders')->get();
-        return view('admin.students_add_service', compact('studentService', 'studentServicePlace', 'studentOrder'));
+        return view('admin.students_add_service', compact('place'));
     }
 
-    function store(Request $request)
+    function store(StudentServiceRequest $request,StudentServicePlace $place)
     {
-        $studentService = new StudentService();
-        $studentService->student_service_place = $request->input('student_services_place');
-        $studentService->service = $request->input('service');
-        $studentService->save();
-        return redirect('students_services');
+        $validate = $request->validated();
+        $validate['student_service_place_id'] = $place->id;
+        StudentService::create($validate);
+
+        return redirect()->route('student.services');
     }
 
-    function edit($id)
+    function edit(StudentService $service)
     {
-        $studentServicePlace = StudentServicePlace::with('studentService')->get();
-        $studentService = StudentService::find($id);
-        return view('admin.students_service_edit', compact('studentService', 'studentServicePlace'));
+        return view('admin.students_service_edit', compact('service'));
     }
 
 
-    function update(Request $request, $id)
+    function update(StudentServiceRequest $request, StudentService $service)
     {
-        $studentService = StudentService::find($id);
-        $studentService->student_service_place = $request->input('student_services_place');
-        $studentService->service = $request->input('service');
-        $studentService->price = $request->input('price');
-        $studentService->update();
-        return redirect('students_services');
+        $service->update($request->validated());
+        return redirect()->route('student.services');
     }
 
-    public function destroy($id)
+    public function destroy(StudentService $service)
     {
-        $studentService = StudentService::find($id);
-        $studentService->delete();
-
-        return redirect('students_services');
+        $service->delete();
+        return redirect()->route('student.services');
     }
 
 
     public function addServicePlace()
     {
-        return view('admin/students_add_main_service');
+        return view('admin.students_add_main_service');
     }
 
 
-    public function storeServicePlace(Request $request)
+    public function storeServicePlace(StudentServicePlaceRequest $request)
     {
-        $studentServicePlace = new StudentServicePlace();
-        $studentServicePlace->name = $request->input('student_service_place');
-        $studentServicePlace->price = $request->input('price');
-        $studentServicePlace->save();
 
-        return redirect('students_services');
+        StudentServicePlace::create($request->validated());
+        return redirect()->route('student.services');
     }
 }

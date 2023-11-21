@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StudentOrderRequest;
 use App\Models\Comment;
 use App\Models\StudentOrder;
 use App\Models\StudentService;
@@ -14,25 +15,16 @@ class StudentController extends Controller
 {
     function index()
     {
-        $studentServicePlace = StudentServicePlace::with('studentService', 'studentOrder')->get();
-        $studentService = StudentService::with('studentServicePlace')->get();
-        $studentOrder = StudentOrder::with('studentServicePlaceForOrders')->get();
+        $studentServicePlace = StudentServicePlace::all();
+        $studentService = StudentService::all();
         $comment = Comment::all();
 
-        return view('main.forstudent', compact('studentService', 'studentServicePlace', 'studentOrder', 'comment'));
+        return view('main.forstudent', compact(['studentService', 'studentServicePlace', 'comment']));
     }
 
-    function storeStudentOrder(Request $request)
+    function storeStudentOrder(StudentOrderRequest $request)
     {
-        $StudentOrder = new StudentOrder();
-        $StudentOrder->student_service_place = $request->input('student_services_place');
-        $StudentOrder->date = $request->input('student_date');
-        $StudentOrder->firstname = $request->input('firstname');
-        $StudentOrder->lastname = $request->input('lastname');
-        $StudentOrder->number = $request->input('number');
-        $StudentOrder->sms = $request->input('sms');
-        $StudentOrder->save();
-
+        StudentOrder::create($request->validated());
         return redirect('success');
     }
 }
