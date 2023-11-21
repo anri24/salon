@@ -2,32 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Http\Requests\LoginRequest;
+use App\Services\LoginService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    public function index()
+    public function index(): Factory|View|Application
     {
         return view('auth.login');
     }
-    public function userLogin(Request $request)
+    public function userLogin(LoginRequest $request,LoginService $service)
     {
-        $request->validate([
-            'number' => 'required',
-            'password' => 'required'
-        ]);
-        $datas = $request->only('number', 'password');
-        if (Auth::attempt($datas)) {
-            return redirect('admin');
-        }
-
-        return redirect('login')->with('fail', 'მომხმარებელი ან პაროლი არასწორია');
+        return $service->login($request);
     }
-    public function logout()
+    public function logout(): Redirector|Application|RedirectResponse
     {
         Session::flush();
         Auth::logout();
