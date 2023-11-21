@@ -47,7 +47,6 @@ class CustomerController extends Controller
     public function storeCustomerOrder(CustomerOrderRequest $request)
     {
         CustomerOrder::create($request->validated());
-
         return redirect('success');
     }
 
@@ -55,7 +54,6 @@ class CustomerController extends Controller
     function storeComment(CommentRequest $request)
     {
         Comment::create($request->validated());
-
         return redirect()->route('main.index');
     }
 }
