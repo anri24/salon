@@ -5,11 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerServicePlaceRequest;
 use App\Http\Requests\CustomerServiceRequest;
-use App\Models\CustomerOrder;
 use App\Models\CustomerService;
 use App\Models\CustomerServicePlace;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Services\CustomerService as ServiceOfCustomer;
 
 class CustomerServiceController extends Controller
 {
@@ -24,13 +22,9 @@ class CustomerServiceController extends Controller
         return view('admin.customers_add_service', compact(['place']));
     }
 
-    function store(CustomerServiceRequest $request, CustomerServicePlace $place)
+    function store(CustomerServiceRequest $request, CustomerServicePlace $place,ServiceOfCustomer $service)
     {
-        $validate = $request->validated();
-        $validate['customer_service_place_id'] = $place->id;
-        CustomerService::create($validate);
-
-        return redirect()->route('customer.services');
+        return $service->storeCustomerService($request,$place);
     }
 
     public function edit(CustomerService $service)
@@ -50,7 +44,6 @@ class CustomerServiceController extends Controller
         return redirect()->route('customer.services');
     }
 
-
     public function addServicePlace()
     {
         return view('admin.customers_add_main_service');
@@ -61,5 +54,4 @@ class CustomerServiceController extends Controller
         CustomerServicePlace::create($request->validated());
         return redirect()->route('customer.services');
     }
-
 }

@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CustomerOrder;
-use App\Models\CustomerService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CustomerOrderController extends Controller
 {
