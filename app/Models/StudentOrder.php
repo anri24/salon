@@ -14,7 +14,7 @@ class StudentOrder extends Model{
 
     protected $table = 'student_orders';
     protected $fillable = [
-        'student_service_place',
+        'student_service_place_id',
         'date',
         'firstname',
         'lastname',
@@ -23,7 +23,7 @@ class StudentOrder extends Model{
     ];
 
     public function studentServicePlaceForOrders(){
-        return $this->belongsTo(StudentServicePlace::class ,'student_service_place');
+        return $this->belongsTo(StudentServicePlace::class ,'student_service_place_id','id');
     }
 
 }

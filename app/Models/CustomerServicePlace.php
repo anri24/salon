@@ -15,7 +15,6 @@ class CustomerServicePlace extends Model{
         'name',
     ];
     public function customerService(){
-        return $this->hasMany(CustomerService::class, 'customer_service_place', 'id');
+        return $this->hasMany(CustomerService::class, 'customer_service_place_id', 'id');
     }
-
 }

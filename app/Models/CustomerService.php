@@ -16,20 +16,16 @@ class  CustomerService extends Model{
 
     protected $table = 'customer_services';
     protected $fillable = [
-        'customer_service_place',
+        'customer_service_place_id',
         'service',
         'price',
     ];
 
     public function customerOrder(){
-        return $this->hasMany(CustomerOrder::class, 'id','services');
+        return $this->hasMany(CustomerOrder::class, 'id','service_id');
     }
 
     public function customerServicePlace(){
-        return $this->belongsTo(CustomerServicePlace::class);
+        return $this->belongsTo(CustomerServicePlace::class,'customer_service_place_id','id');
     }
-
-
-
-
 }

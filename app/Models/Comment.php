@@ -11,11 +11,8 @@ class Comment extends Model
     use HasFactory;
     protected $table = 'comments';
     protected $fillable = [
-        'id',
         'fullname',
         'comment',
-        'created_at',
-        'updated_at'
     ];
 }
 

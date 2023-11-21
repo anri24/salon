@@ -15,14 +15,14 @@ class StudentService extends Model{
 
     protected $table = 'student_services';
     protected $fillable = [
-        'student_service_place',
+        'student_service_place_id',
         'service',
     ];
 
 
 
     public function studentServicePlace(){
-        return $this->belongsTo(StudentServicePlace::class ,'student_service_place');
+        return $this->belongsTo(StudentServicePlace::class ,'student_service_place_id','id');
     }
 
 

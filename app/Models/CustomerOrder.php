@@ -13,8 +13,7 @@ class CustomerOrder extends Model{
 
     protected $table = 'customer_orders';
     protected $fillable = [
-        'id',
-        'services',
+        'service_id',
         'date',
         'time',
         'firstname',
@@ -23,7 +22,6 @@ class CustomerOrder extends Model{
         'sms',
     ];
     public function custmoerServiceForOrder(){
-        return $this->belongsTo(CustomerService::class,'services');
+        return $this->belongsTo(CustomerService::class,'service_id','id');
     }
-
 }
