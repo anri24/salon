@@ -37,7 +37,7 @@ Route::controller(StudentServiceController::class)->group(function () {
     Route::put('update/student/service/{service}', 'update')->name('update.student.service');
     Route::get('delete/student/service/{service}', 'destroy')->name('delete.student.service');
     Route::get('add/students/main/service', 'addServicePlace')->name('add.student.service.place');
-    Route::post('store/student/service/place', 'storeServicePlace')->name('store.student.service.place');
+    Route::post('store/students/service/place', 'storeServicePlace')->name('store.students.service.place');
 });
 
 Route::controller(PortfolioController::class)->group(function () {

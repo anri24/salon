@@ -53,7 +53,7 @@ class StudentServiceController extends Controller
         return view('admin.students_add_main_service');
     }
 
-    public function storeServicePlace(StudentServicePlaceRequest $request): RedirectResponse
+    public function storeServicePlace(StudentServicePlaceRequest $request)
     {
         StudentServicePlace::create($request->validated());
         return redirect()->route('student.services');

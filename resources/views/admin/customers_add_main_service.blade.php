@@ -12,7 +12,6 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4">
                     <div class="beautypress-single-pricing-table">
-                        <!-- forma iqneba aq -->
                         <form action="{{ route('store.customer.service.place') }}" method="post">
                             @csrf
                             <div class="mb-3">

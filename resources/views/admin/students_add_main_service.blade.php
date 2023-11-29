@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-lg-4 col-xl-4">
                     <div class="beautypress-single-pricing-table">
-                        <form action="{{ route('store.student.service.place') }}" method="post">
+                        <form action="{{ route('store.students.service.place') }}" method="post">
                             @csrf
                             <div class="mb-3">
                                 <label for="services-title" class="form-label">სახელი</label>
